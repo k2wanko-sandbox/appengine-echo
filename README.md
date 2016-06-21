@@ -3,7 +3,8 @@
 # Setup
 
 ```sh
-
+git clone https://github.com/k2wanko-sandbox/appengine-echo.git
+cd appengine-echo
 ```
 
 # Run
