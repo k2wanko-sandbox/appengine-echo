@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/labstack/echo"
-	"google.golang.org/appengine/log"
 )
 
 func Logger() echo.MiddlewareFunc {
@@ -33,13 +32,16 @@ func Logger() echo.MiddlewareFunc {
 				method,
 				p,
 			)
+
+			l := c.Logger()
+
 			switch {
 			case s >= 500:
-				log.Errorf(c, "%s", o)
+				l.Error(o)
 			case s >= 400:
-				log.Warningf(c, "%s", o)
+				l.Warn(o)
 			default:
-				log.Infof(c, "%s", o)
+				l.Info(o)
 			}
 			return
 		}

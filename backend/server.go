@@ -3,6 +3,7 @@ package backend
 import (
 	"net/http"
 
+	ae "github.com/k2wanko/echo-appengine"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
 	"google.golang.org/appengine"
@@ -10,7 +11,8 @@ import (
 
 func New() *echo.Echo {
 	e := echo.New()
-	e.Use(AppContext())
+	e.Use(ae.AppContext())
+	e.Use(ae.AppLogger())
 	e.Use(Logger())
 	e.GET("/", handleIndex)
 	return e
